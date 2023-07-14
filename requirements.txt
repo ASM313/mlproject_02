@@ -1,0 +1,13 @@
+﻿flask
+numpy
+pandas
+scikit-learn
+scipy
+seaborn
+dill
+Werkzeug
+xgboost
+zipp
+gunicorn
+
+#-e

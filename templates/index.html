@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Concrete Compressive Strength</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <style>
+        body{
+            background-color: #8EC5FC;
+            background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
+        }
+        
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="/">
+            <img src="/static/images/concrete.png" alt="Concrete" width="40" height="40">
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="#predict">Predict the Strength</a>
+              </li>
+            </ul>
+            <ul class="nav col-md-4 justify-content-end">
+                <li class="nav-item">My Social Profiles</li>
+                <li class="ms-3"><a class="text-body-secondary" href="https://github.com/ASM313/">
+                  <img src="/static/images/github.png" alt="Github" width="30" height="30">
+                </a></li>
+                <li class="ms-3"><a class="text-body-secondary" href="https://linkedin.com/in/atiqmansoori7">
+                  <img src="/static/images/linkedin.png" alt="LinkedIn" width="30" height="30">
+                </a></li>
+                <li class="ms-3"><a class="text-body-secondary" href="https://instagram.com/atiq_sir_official">
+                  <img src="/static/images/instagram.png" alt="Instagram" width="30" height="30">
+                </a></li>
+                </ul>
+          </div>
+        </div>
+      </nav>
+    <div class="container">
+        <marquee scrollamount=20><h1> Compressive strength is the ability of material or structure to carry the loads on its surface without any crack or deflection.</h1>
+            
+        </marquee>
+        <section id="first">
+            <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                  <div class="carousel-item active" data-bs-interval="1500">
+                    <img src="/static/images/concrete1.jfif" style="height: 500px;" class="d-block w-100" alt="...">
+                  </div>
+
+                  <div class="carousel-item" data-bs-interval="1000">
+                    <img src="/static/images/concrete2.jpg" style="height: 500px;" class="d-block w-100" alt="...">
+                  </div>
+                  <div class="carousel-item" data-bs-interval="1000">
+                    <img src="/static/images/concrete3.jfif" style="height: 500px ;" class="d-block w-100" alt="...">
+                  </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+              </div>
+        </section>
+        <section id="predict" style="display: flex;justify-content: center;">
+        <div id="form-predict" style="margin-top: 20px;" class="shadow p-3 mb-5 bg-body-tertiary rounded">
+            <form action="{{ url_for('predict_datapoint')}}" method="post">
+                <h2>
+                    <legend>Concrete Compressive Strength Prediction</legend>
+                </h2>
+                <br><hr>
+                {% if  results %}    
+                <div class="alert alert-success " role="alert">
+                    Compressive Strength for given details is {{ results }}
+                </div>                  
+                {% endif %}
+                
+                <div class="col-auto">
+                    <label class="form-label" style="margin: 20px;">Cement</label>
+                    <input class="form-control" type="number" required name="cement"
+                        placeholder="kg in a mixture " min='100' max='1000' />
+                </div>
+
+                <div class="col-auto">
+                    <label class="form-label" style="margin: 20px;">Blast Furnace Slag</label>
+                    <input class="form-control" type="number" required name="blast_furnace_slag"
+                        placeholder="kg in a mixture " min='100' max='1000' />
+                </div>
+                <div class="col-auto">
+                    <label class="form-label" style="margin: 20px;">Fly Ash</label>
+                    <input class="form-control" type="number" required name="fly_ash"
+                        placeholder="kg in a mixture " min='100' max='1000' />
+                </div>
+                <div class="col-auto">
+                    <label class="form-label" style="margin: 20px;">Water</label>
+                    <input class="form-control" type="number" required name="water"
+                        placeholder="kg in a mixture " min='100' max='1000' />
+                </div>
+                
+                <div class="col-auto">
+                    <label class="form-label" style="margin: 20px;">Super Plasticizer</label>
+                    <input class="form-control" type="number" required name="superplasticizer"
+                        placeholder="kg in a mixture " min='100' max='1000' />
+                </div>
+                
+                <div class="col-auto">
+                    <label class="form-label" style="margin: 20px;">Coarse Aggregate</label>
+                    <input class="form-control" type="number" required name="coarse_aggregate"
+                        placeholder="kg in a mixture " min='100' max='1000' />
+                </div>
+                <div class="col-auto">
+                    <label class="form-label" style="margin: 20px;">Fine Aggregate</label>
+                    <input class="form-control" type="number" required name="fine_aggregate"
+                        placeholder="kg in a mixture " min='100' max='1000' />
+                </div>
+                <div class="col-auto">
+                    <label class="form-label" style="margin: 20px;">Age</label>
+                    <input class="form-control"required type="number" name="age"
+                        placeholder="Age in days" min='1' max='365' />
+                </div>
+                <div class="mb-3" style="margin: 20px;">
+                    <input class="btn btn-info" type="submit" value="Predict Strength" required />
+                </div>
+            </form>
+        </div>
+        </section>
+        <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+            <p class="col-md-4 mb-0 text-body-secondary">© 2023 Company, Inc</p>
+        
+            <a href="/" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+                <img src="/static/images/concrete.png" alt="Concrete" width="30" height="30">
+            </a>
+        
+            <ul class="nav col-md-4 justify-content-end">
+              <li class="nav-item"><a href="/" class="nav-link px-2 text-body-secondary">Home</a></li>
+              <li class="nav-item"><a href="#predict" class="nav-link px-2 text-body-secondary">Predict Strength</a></li>
+              <li class="ms-3"><a class="text-body-secondary" href="https://github.com/ASM313/">
+                <img src="/static/images/github.png" alt="Github" width="30" height="30">
+              </a></li>
+              <li class="ms-3"><a class="text-body-secondary" href="https://linkedin.com/in/atiqmansoori7">
+                <img src="/static/images/linkedin.png" alt="LinkedIn" width="30" height="30">
+              </a></li>
+              <li class="ms-3"><a class="text-body-secondary" href="https://instagram.com/atiq_sir_official">
+                <img src="/static/images/instagram.png" alt="Instagram" width="30" height="30">
+              </a></li>
+              </ul>
+          </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+  </body>
+</html>
